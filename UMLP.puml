@@ -1,0 +1,127 @@
+@startuml
+class protection.model.logicalnodes.protections.PTOC {
++ WYE A
++ ASG StrVal
++ ING OpDlTmms
++ ACD Str
++ ACT Op
++ void process()
++ ACT getOp()
++ ASG getStrVal()
++ ING getOpDITmms()
+}
+class protection.model.dataobjects.measurements.MV {
+- AnalogueValue instMag
+- Quality q
+- Timestamp t
+}
+class protection.model.logicalnodes.measurements.MMXU {
++ MV phsAInst
++ MV phsBInst
++ MV phsCInst
++ WYE A
+- Filter phsACurrent
+- Filter phsBCurrent
+- Filter phsCCurrent
++ void process()
+}
+class breakerControl.XCBR {
+- DPC Pos
+- SPC BlkOpn
+- SPC BlkCls
++ void process()
+}
+class protection.model.dataobjects.measurements.CMV {
+- Vector cVal
+- Quality q
+- Timestamp t
+}
+class protection.model.logicalnodes.gui.NHMI {
+- HashMap<XYSeries,DataAttribute<?>> datasets
+- CombinedDomainXYPlot plot
+- JFrame frame
+- int notifyCount
+- double currentTime
++ void process()
++ void addSignals(String,NHMISignal)
++ void addSignals(String,List<NHMISignal>)
++ void addSignals(NHMISignal)
++ void dispose()
+}
+class protection.model.logicalnodes.input.LCOM {
+- File cfgFile
+- File datFile
+- List<String> cfgDataFile
+- List<String> datDataFile
+- List<Double> aCoefList
+- List<Double> bCoefList
+- int analogNumber
+- int discreteNumber
+- Iterator<String> dataIterator
++ List<MV> OUT
++ void process()
++ boolean hasNextData()
++ void setFilePath(String,String)
+- void extractCfgFileData()
+}
+class protection.model.dataobjects.protection.ING {
+- Integer SetVal
++ Integer getSetVal()
++ void setSetVal(Integer)
+}
+class protection.model.dataobjects.measurements.AnalogueValue {
+- DataAttribute<Double> f
+}
+class breakerControl.CSWI {
+- ACT OpOpn
+- ACT OpCls
+- DPC Pos
+- DPC PosA
+- DPC PosB
+- DPC PosC
++ void process()
+}
+class protection.model.dataobjects.measurements.WYE {
+- CMV phsA
+- CMV phsB
+- CMV phsC
+- CMV neut
+}
+class protection.model.dataobjects.protection.ACT {
+- DataAttribute<Boolean> general
+- DataAttribute<Boolean> phsA
+- DataAttribute<Boolean> phsB
+- DataAttribute<Boolean> phsC
+- DataAttribute<Boolean> neut
+}
+class protection.model.dataobjects.measurements.Vector {
+- AnalogueValue mag
+- AnalogueValue ang
+}
+class protection.model.dataobjects.protection.ACD {
+- DataAttribute<Direction> dirGeneral
+- DataAttribute<Direction> dirPhsA
+- DataAttribute<Direction> dirPhsB
+- DataAttribute<Direction> dirPhsC
+}
+enum protection.model.dataobjects.protection.Direction {
++  FORWARD
++  BACKWARD
++  BOTH
+}
+
+
+protection.model.logicalnodes.common.LN <|-- protection.model.logicalnodes.protections.PTOC
+protection.model.common.DATA <|-- protection.model.dataobjects.measurements.MV
+protection.model.logicalnodes.common.LN <|-- protection.model.logicalnodes.measurements.MMXU
+protection.model.logicalnodes.common.LN <|-- breakerControl.XCBR
+protection.model.common.DATA <|-- protection.model.dataobjects.measurements.CMV
+protection.model.logicalnodes.common.LN <|-- protection.model.logicalnodes.gui.NHMI
+protection.model.logicalnodes.common.LN <|-- protection.model.logicalnodes.input.LCOM
+protection.model.common.DATA <|-- protection.model.dataobjects.measurements.AnalogueValue
+protection.model.logicalnodes.common.LN <|-- breakerControl.CSWI
+protection.model.common.DATA <|-- protection.model.dataobjects.measurements.WYE
+protection.model.common.DATA <|-- protection.model.dataobjects.protection.ACT
+protection.model.common.DATA <|-- protection.model.dataobjects.measurements.Vector
+protection.model.dataobjects.protection.ACT <|-- protection.model.dataobjects.protection.ACD
+@enduml

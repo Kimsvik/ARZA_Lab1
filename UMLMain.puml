@@ -1,0 +1,65 @@
+@startuml
+class protection.model.logicalnodes.protections.PTOC {
++ WYE A
++ ASG StrVal
++ ING OpDlTmms
++ ACD Str
++ ACT Op
++ void process()
++ ACT getOp()
++ ASG getStrVal()
++ ING getOpDITmms()
+}
+class protection.model.logicalnodes.input.LCOM {
+- File cfgFile
+- File datFile
+- List<String> cfgDataFile
+- List<String> datDataFile
+- List<Double> aCoefList
+- List<Double> bCoefList
+- int analogNumber
+- int discreteNumber
+- Iterator<String> dataIterator
++ List<MV> OUT
++ void process()
++ boolean hasNextData()
++ void setFilePath(String,String)
+- void extractCfgFileData()
+}
+class Main {
+- {static} List<LN> lnList
++ {static} void main(String[])
+}
+class breakerControl.CSWI {
+- ACT OpOpn
+- ACT OpCls
+- DPC Pos
+- DPC PosA
+- DPC PosB
+- DPC PosC
++ void process()
+}
+class protection.model.logicalnodes.measurements.MMXU {
++ MV phsAInst
++ MV phsBInst
++ MV phsCInst
++ WYE A
+- Filter phsACurrent
+- Filter phsBCurrent
+- Filter phsCCurrent
++ void process()
+}
+class breakerControl.XCBR {
+- DPC Pos
+- SPC BlkOpn
+- SPC BlkCls
++ void process()
+}
+
+
+protection.model.logicalnodes.common.LN <|-- protection.model.logicalnodes.protections.PTOC
+protection.model.logicalnodes.common.LN <|-- protection.model.logicalnodes.input.LCOM
+protection.model.logicalnodes.common.LN <|-- breakerControl.CSWI
+protection.model.logicalnodes.common.LN <|-- protection.model.logicalnodes.measurements.MMXU
+protection.model.logicalnodes.common.LN <|-- breakerControl.XCBR
+@enduml

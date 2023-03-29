@@ -1,0 +1,31 @@
+@startuml
+class Main {
+- {static} List<LN> lnList
++ {static} void main(String[])
+}
+class breakerControl.CSWI {
+- ACT OpOpn
+- ACT OpCls
+- DPC Pos
+- DPC PosA
+- DPC PosB
+- DPC PosC
++ void process()
+}
+abstract class protection.model.common.DATA {
+- String name
+- String reference
+- DATA parent
+- List<DATA> children
+}
+class breakerControl.XCBR {
+- DPC Pos
+- SPC BlkOpn
+- SPC BlkCls
++ void process()
+}
+
+
+protection.model.logicalnodes.common.LN <|-- breakerControl.CSWI
+protection.model.logicalnodes.common.LN <|-- breakerControl.XCBR
+@enduml
