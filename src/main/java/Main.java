@@ -43,10 +43,10 @@ public class Main {
         ptoc1.StrVal.getSetMag().getF().setValue(2000d); // Задание уставки
         ptoc1.getOpDITmms().setSetVal(25);
         ptoc1.A = mmxu.A; // Сравнение значения тока с уставками
-        ptoc2.StrVal.getSetMag().getF().setValue(500d);
+        ptoc2.StrVal.getSetMag().getF().setValue(1000d);
         ptoc2.getOpDITmms().setSetVal(50);
         ptoc2.A = mmxu.A;
-        ptoc3.StrVal.getSetMag().getF().setValue(293d);
+        ptoc3.StrVal.getSetMag().getF().setValue(500d);
         ptoc3.getOpDITmms().setSetVal(100);
         ptoc3.A = mmxu.A;
 
